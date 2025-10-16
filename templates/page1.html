@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% set active_page = "page1" %}
+
+{% block title %}Page 1{% endblock %}
+
+{% block content %}
+    <!--page content-->
+	<h2>Password Generator Form<h2>
+	<div class="container mt-3">
+    <form action='/response'>
+	  <p> put "cats" or dogs" </p>
+      <label for="dogcat">Do You Like Cats or Dogs More?</label>
+      <br>
+      <input type="text" name="dogcat" id="dogcat">
+      <br><br>
+	  
+	  <label for="num">Whats Your Favorite Number?</label>
+	  <br>
+	  <input type="number" name="multNum" id="num" required>
+	  <br><br>
+      <input type="submit">
+    </form>
+{% endblock %}
