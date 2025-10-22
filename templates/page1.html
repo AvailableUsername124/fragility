@@ -5,20 +5,22 @@
 {% block title %}Page 1{% endblock %}
 
 {% block content %}
-    <!--page content-->
-	<h2>Password Generator Form<h2>
-	<div class="container mt-3">
-    <form action='/response'>
-	  <p> put "cats" or dogs" </p>
-      <label for="dogcat">Do You Like Cats or Dogs More?</label>
-      <br>
-      <input type="text" name="dogcat" id="dogcat">
-      <br><br>
-	  
-	  <label for="num">Whats Your Favorite Number?</label>
-	  <br>
-	  <input type="number" name="multNum" id="num" required>
-	  <br><br>
-      <input type="submit">
-    </form>
+	<head>
+        <title>Country Fragility</title>
+    </head>
+    <body id="body1">
+
+        <form action="/showFragility">
+          <select name="country">
+            {{ state_options }}
+          </select>
+          <br><br>
+          <input type="submit" value="See Country Fragility.">
+        </form>
+        <div id="Fragility">
+            <p>{{ Fragility1 }}</p>
+			<p>{{ Fragility2 }}</p>
+        </div>
+
+    </body>
 {% endblock %}
