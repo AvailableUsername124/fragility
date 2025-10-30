@@ -13,8 +13,9 @@ def render_main():
 
 @app.route("/p1")
 def render_page1():
-    
-    State_Fragility_Indexs = fragility_index()
+    country = request.args.get('country') #juan
+    year = request.args.get('year') #jaun
+    State_Fragility_Indexs = fragility_index(country, year)
     countries = get_country_options()
     years = get_year_options()
     return render_template('page1.html', country_options=countries, year_options=years)
@@ -26,16 +27,12 @@ def render_page2():
 @app.route('/showFragility')
 def render_fact():
     countries = get_country_options()
-    country = request.args.get('country','')
+    country = request.args.get('country')
     years = get_year_options()
-    year = request.args.get('year', '')
-    State_Fragility_Indexs = fragility_index()
-    State_Fragility_Index = request.args.get('State Fragility Index', '')
-    #county = county_most_under_18(state)
-    #county1 = white(state)
-    Fragile1 = "In " + country + ", " + "The fragility is " + year + "."
-    Fragile2 = "In " + country + ", " "the fragility is " + year + "."
-    return render_template('page1.html', country_options=countries, Fragility1=Fragile1, Fragility2 = Fragile2)
+    year = request.args.get('year')
+    State_Fragility_Indexs = fragility_index(country, year)
+    Fragile1 = "In " + str(country) + ", " + "in the year " + str(year) + " The fragility is " + str(State_Fragility_Indexs) + "." #used ai to add str cause I was actin like a dingleberry and forgot how to fix it ai: https://www.perplexity.ai/search/i-got-the-error-can-only-conca-lwcYFVcxQXKBZE9JvUG90w 
+    return render_template('page1.html', year_options=years, country_options=countries, Fragility1=Fragile1)
 
 def get_country_options():
     with open('state_fragility.json') as fragility_data:
@@ -46,7 +43,7 @@ def get_country_options():
             countries.append(c["Country"])
     options=""
     for s in countries:
-        options += Markup("<option value=\"" + s + "\">" + s + "</option>") #Use Markup so <, >, " are not escaped lt, gt, etc.
+        options += Markup("<option value=\"" + s + "\">" + s + "</option>")
     return options
 
 def get_year_options():
@@ -58,20 +55,19 @@ def get_year_options():
             years.append(c["Year"])
     options=""
     for s in years:
-        options += Markup("<option value=\"" + str(s) + "\">" + str(s) + "</option>") #Use Markup so <, >, " are not escaped lt, gt, etc.
+        options += Markup("<option value=\"" + str(s) + "\">" + str(s) + "</option>")
     return options
 
-def fragility_index():
+def fragility_index(country, year):
     with open('state_fragility.json') as fragility_data:
         countries = json.load(fragility_data)
-    State_Fragility_Indexs=[]
-    for c in countries:
-        if c["Metrics"]["State Fragility Index"] not in State_Fragility_Indexs:
-            State_Fragility_Indexs.append(c["Metrics"]["State Fragility Index"])
-    options=""
-    for s in State_Fragility_Indexs:
-        options += Markup("<option value=\"" + str(s) + "\">" + str(s) + "</option>") #Use Markup so <, >, " are not escaped lt, gt, etc.
-    return options
+    metric = ""
+    for c in countries: 
+        if c["Country"] == country and str(c["Year"]) == str(year):
+            return c["Metrics"]["State Fragility Index"]
+            #State_Fragility_Indexs.append(c["Metrics"]["State Fragility Index"])
+    return None
+    
 
 
 
