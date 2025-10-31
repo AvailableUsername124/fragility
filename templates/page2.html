@@ -6,7 +6,28 @@
 
 {% block content %}
     <!--page content-->
-    <h1>Page 2</h1>
+    <head>
+        <title>Country Effectiveness</title>
+    </head>
+    <body id="body2">
+
+        <form action="/showEffectiveness">
+          <select name="country">
+            {{ country_options }}
+          </select>
+          <br><br>
+			<select name ="year">
+			{{ year_options }}
+			</select>
+			<br><br>
+            <input type="submit" value="See Country Effectiveness.">
+        </form>
+        <div id="Effectiveness1">
+            <p>{{ Fragility2 }}</p>
+			<p>The score is out of 13, lowest being the best.</p>
+        </div>
+
+    </body>
 	
 	
 {% endblock %}
