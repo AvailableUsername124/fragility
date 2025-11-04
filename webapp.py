@@ -29,6 +29,11 @@ def render_page2():
     years = get_year_options()
     return render_template('page2.html', country_options=countries, year_options=years)
 
+@app.route("/p3")
+def render_page3():
+    return render_template('page3.html')
+
+
 @app.route('/showFragility')
 def render_fact():
     countries = get_country_options()
@@ -98,4 +103,4 @@ def effectiveness_index(country, year):
     
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)

@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% set active_page = "page3" %}
+
+{% block title %}Page 3{% endblock %}
+
+{% block content %}
+    <!--page content-->
+
+<!DOCTYPE HTML>
+<html>
+<head>  
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Graph of the Fragility of the United States"
+	},
+	data: [{        
+		type: "line",
+      	indexLabelFontSize: 16,
+		dataPoints: [
+			{ x: 1, y: 0, label: "1995" },
+			{ x: 2, y: 0, label: "1996" },
+			{ x: 3, y: 0, label: "1997" }, 
+			{ x: 4, y: 0, label: "1998" },
+			{ x: 5, y: 0, label: "1999" },
+			{ x: 6, y: 1, label: "2000" },
+			{ x: 7, y: 1, label: "2001" },
+			{ x: 8, y: 0, label: "2002" },
+			{ x: 9, y: 1, label: "2003" },
+			{ x: 10, y: 2, label: "2004" },
+			{ x: 11, y: 2, label: "2005" },
+			{ x: 12, y: 2, label: "2006" },
+			{ x: 13, y: 2, label: "2007" },
+			{ x: 14, y: 2, label: "2008" },
+			{ x: 15, y: 3, label: "2010" },
+			{ x: 16, y: 3, label: "2011" },
+			{ x: 17, y: 3, label: "2012" },
+			{ x: 18, y: 3, label: "2013" },
+			{ x: 19, y: 3, label: "2014" },
+			{ x: 20, y: 3, label: "2015" },
+			{ x: 21, y: 3, label: "2016" },
+			{ x: 22, y: 4, label: "2017" },
+			{ x: 23, y: 4, label: "2018" }
+		]
+	}]
+});
+chart.render();
+
+}
+
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+</body>
+</html>
+	
+	
+{% endblock %}
