@@ -19,6 +19,13 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	title:{
 		text: "Graph of the Fragility of the United States"
 	},
+	axisX: {
+		title: "Years"
+	},
+	axisY: {
+		title: "State Fragility",
+		includeZero: true
+	},
 	data: [{        
 		type: "line",
       	indexLabelFontSize: 16,
@@ -56,6 +63,7 @@ chart.render();
 </script>
 </head>
 <body>
+<p>Graph is out of 25, the lowest being better.</p>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </body>
